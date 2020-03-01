@@ -31,11 +31,12 @@ class MainActivity : AppCompatActivity() {
             outputTextView.setText("")
             val commands = commandStr.split(" ")
             var isPlaced = false
+            var hasPlaceCommand = false
             var isEnd = false
             for(command in commands){
                 var action = command.trim()
                 var direction = arrayOfNulls<String>(3)
-                if (isPlaced && (command.toUpperCase().contains("NORTH") || command.toUpperCase().contains(
+                if (hasPlaceCommand && (command.toUpperCase().contains("NORTH") || command.toUpperCase().contains(
                         "EAST"
                     ) || command.toUpperCase().contains("WEST") || command.toUpperCase().contains(
                         "SOUTH"
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
                 when (action.toUpperCase()) {
                     "PLACE" -> {
-                        isPlaced = true
+                        hasPlaceCommand = true
                     }
                     "DIRECTION" -> {
                         if (direction.size == 3) {
@@ -57,6 +58,7 @@ class MainActivity : AppCompatActivity() {
                                     direction[1].toString().trim().toInt(),
                                     direction[2].toString().trim()
                                 )
+                                isPlaced = true
                             } catch (e: Exception) {
                                 printOutput(e.message.toString())
                                 isEnd = true
