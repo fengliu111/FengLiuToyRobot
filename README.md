@@ -13,7 +13,14 @@ Type command on the top of screen, all commands must be from the list below. Inv
 5. REPORT: print out the current position of the robot. Report command will stop any following command
 
 # Constraints
-robot must move only within the table range. No command is allowed to be excutable if robot is not on the table.
+1. robot must move only within the table range. No command is allowed to be excutable if robot is not on the table.
+2. Each command is separated by ONE white space
+3. Direction is separated by comma and no space between them
 
 # Notes
 After command is excuted and, an output message of robot's current position will be displayed at the bottom of screen if command contains "Report". There is also an arrow will stay on the screen to present robot's position and direction. 
+
+# Testing
+1. PLACE 1,2,NORTH MOVE MOVE LEFT LEFT MOVE RIGHT REPORT Output: 1, 3, WEST
+2. PLACE 4,4,WEST MOVE LEFT MOVE RIGHT REPORT Output: 3, 3, WEST
+3. PLACE 3,2,SOUTH MOVE LEFT MOVE RIGHT MOVE MOVE REPORT Output: Robot is out of bound
